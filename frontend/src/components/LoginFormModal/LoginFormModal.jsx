@@ -1,29 +1,34 @@
-// frontend/src/components/LoginFormPage/LoginFormPage.jsx
+// frontend/src/components/LoginFormModal/LoginFormModal.jsx
 
 import { useState } from 'react';
 import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useModal } from '../../context/Modal';
+// import { Navigate } from 'react-router-dom';
 import './LoginForm.css';
 
-function LoginFormPage() {
+function LoginFormModal() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  // const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const { closeModal } = useModal()
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  // if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
+    return dispatch(sessionActions.login({ credential, password }))
+      .then(closeModal)
+      .catch(async (res) => {
         const data = await res.json();
-        if (data?.errors) setErrors(data.errors);
-      }
-    );
+        if (data && data.error) {
+          setErrors(data.errors);
+        }
+      });
   };
 
   return (
@@ -55,4 +60,4 @@ function LoginFormPage() {
   );
 }
 
-export default LoginFormPage;
+export default LoginFormModal;
