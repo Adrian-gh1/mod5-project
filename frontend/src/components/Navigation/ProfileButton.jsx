@@ -71,20 +71,20 @@ function ProfileButton({ user }) {
             <div className='auth-links'>
               <li>
                 <OpenModalMenuItem
-                  // buttonText="Log In"
-                  itemText="Log In"
-                  onItemClick={closeMenu}
-                  modalComponent={<LoginFormModal />}
-                />
-              </li>
-              <li>
-                <OpenModalMenuItem
                   // buttonText="Sign Up"
                   itemText="Sign Up"
                   onItemClick={closeMenu}
                   modalComponent={<SignupFormModal />}
                 />
               </li>
+              <li>
+                <OpenModalMenuItem
+                  // buttonText="Log In"
+                  itemText="Log In"
+                  onItemClick={closeMenu}
+                  modalComponent={<LoginFormModal />}
+                />
+              </li>              
             </div>
           </>
         )}
