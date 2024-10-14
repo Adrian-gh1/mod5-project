@@ -25,8 +25,9 @@ function LoginFormModal() {
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
-        if (data && data.error) {
-          setErrors(data.errors);
+        if (data && data.message) {
+          // setErrors(data.message);
+          setErrors({credential: 'The provided credentials were invalid'});
         }
       });
   };
@@ -55,7 +56,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.credential && <p>{errors.credential}</p>}
+        {errors.credential && <p className='cred-error'>{errors.credential}</p>}
         <button type="submit" disabled={disableLogInButton}>
           Log In
         </button>
