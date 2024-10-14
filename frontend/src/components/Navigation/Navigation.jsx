@@ -49,19 +49,17 @@ function Navigation({ isLoaded }) {
 
   return (
     <nav>
-      <NavLink to='/'>
-        <img src='/favicon.ico' alt='Logo' />
-      </NavLink>
-      <ul>
-        <li>
+      <div className='header'>
+        <div className='logo'>
+          <NavLink to='/'>
+            <img src='/favicon.ico' alt='Logo' />
+          </NavLink>
+        </div>
+        <div className='auth-buttons'>
           <NavLink to="/">Home</NavLink>
-        </li>
-        {isLoaded && (
-          <li>
-            <ProfileButton user={sessionUser} />
-          </li>
-        )}
-      </ul>
+          {isLoaded && <ProfileButton user={sessionUser} />}
+        </div>
+      </div>
     </nav>
   );
 }
