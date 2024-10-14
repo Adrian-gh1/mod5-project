@@ -58,7 +58,8 @@ function SignupFormModal() {
     confirmPassword.length === 0 ||
     
     // Disable button when not enough characters
-    username.length < 4
+    username.length < 4 ||
+    password.length < 6
     ;
 
 
