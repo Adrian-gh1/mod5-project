@@ -32,6 +32,15 @@
     margin-bottom: 10px;
 }
 
+.profile-dropdown li:last-child {
+    margin-bottom: 0px;
+}
+
+.auth-links li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .hidden {
     display: none;
 }
