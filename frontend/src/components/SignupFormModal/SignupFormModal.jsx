@@ -49,12 +49,17 @@ function SignupFormModal() {
   };
 
   const disableSignUpButton = 
+    // Disable Button when any field is empty
     email.length === 0 ||
     username.length === 0 ||
     firstName.length === 0 ||
     lastName.length === 0 ||
     password.length === 0 ||
-    confirmPassword.length === 0;
+    confirmPassword.length === 0 ||
+    
+    // Disable button when not enough characters
+    username.length < 4
+    ;
 
 
   return (
