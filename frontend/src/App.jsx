@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 // import SignupFormModal from './components/SignupFormModal';
 import Navigation from './components/Navigation';
 import * as sessionActions from './store/session';
-import logo from '../public/favicon.ico';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -50,8 +49,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div>
-      <img src={logo} alt='Logo' />
-      <h1> Hello from App </h1>
+      {/* <h1> Hello from App </h1> */}
       <RouterProvider router={router} />
     </div>
   );

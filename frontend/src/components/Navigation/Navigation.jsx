@@ -48,16 +48,21 @@ function Navigation({ isLoaded }) {
   // );
 
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      {isLoaded && (
+    <nav>
+      <NavLink to='/'>
+        <img src='/favicon.ico' alt='Logo' />
+      </NavLink>
+      <ul>
         <li>
-          <ProfileButton user={sessionUser} />
+          <NavLink to="/">Home</NavLink>
         </li>
-      )}
-    </ul>
+        {isLoaded && (
+          <li>
+            <ProfileButton user={sessionUser} />
+          </li>
+        )}
+      </ul>
+    </nav>
   );
 }
 
