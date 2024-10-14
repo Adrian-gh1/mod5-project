@@ -48,6 +48,15 @@ function SignupFormModal() {
     });
   };
 
+  const disableSignUpButton = 
+    email.length === 0 ||
+    username.length === 0 ||
+    firstName.length === 0 ||
+    lastName.length === 0 ||
+    password.length === 0 ||
+    confirmPassword.length === 0;
+
+
   return (
     <>
       <h1>Sign Up</h1>
@@ -62,6 +71,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.email && <p>{errors.email}</p>}
+
         <label>
           Username
           <input
@@ -72,6 +82,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.username && <p>{errors.username}</p>}
+
         <label>
           First Name
           <input
@@ -82,6 +93,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.firstName && <p>{errors.firstName}</p>}
+
         <label>
           Last Name
           <input
@@ -92,6 +104,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.lastName && <p>{errors.lastName}</p>}
+
         <label>
           Password
           <input
@@ -102,6 +115,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
+
         <label>
           Confirm Password
           <input
@@ -112,7 +126,10 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+
+        <button type="submit" disabled={disableSignUpButton}>
+          Sign Up
+        </button>
       </form>
     </>
   );
