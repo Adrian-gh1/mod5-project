@@ -1,19 +1,22 @@
 # Common Git Commands
 
 
-## View a Branch List
+## View the Local Branch List
+``` bash
+git branch
+```
+
+## Create a Local Branch
 ``` bash
 git checkout -b <your-branch-name>
 ```
 
-## Create a Branch
+## Switch Local Branch
 ``` bash
-git checkout dev
-git pull origin dev
-git checkout -b <your-branch-name>
+git checkout <your-branch-name>
 ```
 
-## START CODING: PULL FROM GITHUB into LOCAL BRANCH
+## Start: Pull from Github into Local Branch
 ``` bash
 git checkout dev
 git pull origin dev
@@ -21,7 +24,7 @@ git checkout <your-branch-name>
 git merge dev
 ```
 
-## END CODING: PUSH TO GITHUB from LOCAL BRANCH
+## End: Push to Github from Local Branch
 ``` bash
 git add .
 git commit -m '<your-comment>'
