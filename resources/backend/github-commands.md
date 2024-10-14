@@ -1,6 +1,11 @@
 # Common Git Commands
 
 
+## View a Branch List
+``` bash
+git checkout -b <your-branch-name>
+```
+
 ## Create a Branch
 ``` bash
 git checkout dev
