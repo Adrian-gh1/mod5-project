@@ -32,6 +32,14 @@ function LoginFormModal() {
       });
   };
 
+  const handleDemoLogIn = () => {
+    return dispatch(sessionActions.login({
+      credential: 'demo@user.io',
+      password: 'password'
+    }))
+      .then(closeModal)
+  };
+
   const disableLogInButton = credential.length < 4 || password.length < 6;
 
   return (
@@ -47,6 +55,7 @@ function LoginFormModal() {
             required
           />
         </label>
+
         <label>
           Password
           <input
@@ -56,11 +65,17 @@ function LoginFormModal() {
             required
           />
         </label>
+
         {errors.credential && <p className='cred-error'>{errors.credential}</p>}
         <button type="submit" disabled={disableLogInButton}>
           Log In
         </button>
+
       </form>
+      
+      <button onClick={handleDemoLogIn}>
+        Log in as Demo User
+      </button>
     </>
   );
 }
