@@ -38,7 +38,9 @@ function SignupFormModal() {
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
+        console.log('Data 1:', data);
         if (data?.errors) {
+          console.log('Data 2:', data.errors);
           setErrors(data.errors);
         }
       });
@@ -76,7 +78,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className='signup-errors'>{errors.email}</p>}
 
         <label>
           Username
@@ -87,7 +89,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className='signup-errors'>{errors.username}</p>}
 
         <label>
           First Name
@@ -98,7 +100,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
+        {errors.firstName && <p className='signup-errors'>{errors.firstName}</p>}
 
         <label>
           Last Name
@@ -109,7 +111,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+        {errors.lastName && <p className='signup-errors'>{errors.lastName}</p>}
 
         <label>
           Password
@@ -120,7 +122,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className='signup-errors'>{errors.password}</p>}
 
         <label>
           Confirm Password
@@ -131,7 +133,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && <p className='signup-errors'>{errors.confirmPassword}</p>}
 
         <button type="submit" disabled={disableSignUpButton}>
           Sign Up

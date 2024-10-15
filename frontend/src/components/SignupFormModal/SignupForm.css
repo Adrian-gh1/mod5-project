@@ -1,1 +1,6 @@
 /* frontend/src/components/SignupFormPage/SignupFormPage.css */
+
+.signup-errors {
+    color: red;
+    margin-top: 5px;
+}
