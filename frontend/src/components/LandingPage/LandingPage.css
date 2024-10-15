@@ -1,0 +1,36 @@
+.tile-container {
+    padding: 20px;
+}
+
+.tile-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.tile {
+    background-color: #be8c8c;
+    /* color: white; */
+    padding: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tile img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .tile-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .tile-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
