@@ -38,9 +38,7 @@ function SignupFormModal() {
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
-        console.log('Data 1:', data);
         if (data?.errors) {
-          console.log('Data 2:', data.errors);
           setErrors(data.errors);
         }
       });
