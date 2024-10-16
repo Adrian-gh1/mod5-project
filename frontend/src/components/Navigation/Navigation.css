@@ -11,6 +11,10 @@
     gap: 50px;
 }
 
+.auth-buttons button {
+    cursor: pointer;
+}
+
 .profile-dropdown {
     /* Dropdown Menu Position */
     position: absolute;

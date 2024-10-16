@@ -17,7 +17,7 @@ const LandingPage = () => {
         <div className='tile-container'>
             <div className='tile-list'>
                 {spots.map(spot => (
-                    <div key={spot.id} className='tile'>
+                    <div key={spot.id} className='tile' title={spot.name}>
                         <img src={spot.previewImage} alt={spot.name} />
                         {/* <h2>{spot.name}</h2> */}
                         <p>{spot.city}, {spot.state}</p>
