@@ -1,0 +1,51 @@
+.tile-container {
+    padding: 20px;
+}
+
+.tile-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.tile {
+    position: relative;
+    background-color: #be8c8c;
+    /* color: white; */
+    padding: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+    text-decoration: none;
+    color: inherit;
+}
+
+.tile img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.tile:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.tile-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .tile-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .tile-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
