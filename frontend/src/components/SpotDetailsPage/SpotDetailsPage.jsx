@@ -24,6 +24,10 @@ const SpotDetailsPage = () => {
         );
     }
 
+    const handleReserveButton = () => {
+        alert('Feature coming soon');
+    };
+
     return (
         <div className='container'>
             <h1>{spot.name}</h1>
@@ -52,7 +56,7 @@ const SpotDetailsPage = () => {
                             <FaStar /> {spot.aveReviews > 0 ? spot.aveRating.toFixed(2) : 'New'} · {spot.numReviews} reviews
                         </div>
                     </div>
-                    <button>Reserve</button>
+                    <button onClick={handleReserveButton}>Reserve</button>
                 </div>
             </div>
         </div>
