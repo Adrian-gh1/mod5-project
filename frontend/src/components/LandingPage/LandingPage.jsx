@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
 import { allspots } from "../../store/spots";
 import './LandingPage.css';
 
@@ -17,15 +18,14 @@ const LandingPage = () => {
         <div className='tile-container'>
             <div className='tile-list'>
                 {spots.map(spot => (
-                    <div key={spot.id} className='tile' title={spot.name}>
+                    <NavLink to={`/spots/${spot.id}`} key={spot.id} className='tile' title={spot.name}>
                         <img src={spot.previewImage} alt={spot.name} />
-                        {/* <h2>{spot.name}</h2> */}
                         <div className='tile-info'>
                             <p>{spot.city}, {spot.state}</p>
                             <p>{spot.aveReviews > 0 ? spot.aveRating.toFixed(2) : 'New'}</p>                                
                         </div>
                         <p>${spot.price}/night</p>
-                    </div>
+                    </NavLink>
                 ))}
             </div>
         </div>
