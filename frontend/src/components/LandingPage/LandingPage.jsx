@@ -20,7 +20,14 @@ const LandingPage = () => {
                     <div key={spot.id} className='tile' title={spot.name}>
                         <img src={spot.previewImage} alt={spot.name} />
                         {/* <h2>{spot.name}</h2> */}
-                        <p>{spot.city}, {spot.state}</p>
+                        <div className='tile-info'>
+                            <p>
+                                {spot.city}, {spot.state}
+                            </p>
+                            <p>
+                                {spot.aveReviews > 0 ? spot.aveRating.toFixed(2) : 'New'}
+                            </p>                                
+                        </div>
                         {/* <p>${spot.price}/night</p> */}
                     </div>
                 ))}

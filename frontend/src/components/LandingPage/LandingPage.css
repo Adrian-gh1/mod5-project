@@ -5,7 +5,7 @@
 .tile-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    gap: 20px;
 }
 
 .tile {
@@ -27,6 +27,12 @@
 .tile:hover {
     cursor: pointer;
     transform: scale(1.05);
+}
+
+.tile-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (min-width: 768px) {
