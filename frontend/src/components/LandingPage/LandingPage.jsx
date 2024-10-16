@@ -18,10 +18,10 @@ const LandingPage = () => {
             <div className='tile-list'>
                 {spots.map(spot => (
                     <div key={spot.id} className='tile'>
-                        <img src={spot.previewImage} alt={`Spot ${spot.name}`} />
-                        {/* <h2>Name: {spot.name}</h2>
-                        <p>City: {spot.city}, {spot.state}</p>
-                        <p>Price: ${spot.price}</p> */}
+                        <img src={spot.previewImage} alt={spot.name} />
+                        {/* <h2>{spot.name}</h2> */}
+                        <p>{spot.city}, {spot.state}</p>
+                        {/* <p>${spot.price}/night</p> */}
                     </div>
                 ))}
             </div>
