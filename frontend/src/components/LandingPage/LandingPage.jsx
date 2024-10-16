@@ -4,15 +4,15 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
-import { allspots } from "../../store/spots";
+import { allSpots } from "../../store/spots";
 import './LandingPage.css';
 
 const LandingPage = () => {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spots);
+    const spots = useSelector(state => state.spots.spots);
 
     useEffect(() => {
-        dispatch(allspots());
+        dispatch(allSpots());
     }, [dispatch]);
 
     return (

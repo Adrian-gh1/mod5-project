@@ -3,10 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-// import LoginFormPage from './components/LoginFormPage';
-// import SignupFormModal from './components/SignupFormModal';
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
+import SpotDetailsPage from './components/SpotDetailsPage/SpotDetailsPage';
 import * as sessionActions from './store/session';
 
 function Layout() {
@@ -35,14 +34,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <LandingPage />
       },
-      // {
-      //   path: '/login',
-      //   element: <LoginFormPage />
-      // },
-      // {
-      //   path: "/signup",
-      //   element: <SignupFormModal />
-      // }
+      {
+        path: '/spots/:id',
+        element: <SpotDetailsPage />
+      }
     ]
   }
 ]);
@@ -50,7 +45,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div>
-      {/* <h1> Hello from App </h1> */}
       <RouterProvider router={router} />
     </div>
   );
