@@ -46,13 +46,13 @@ const SpotDetailsPage = () => {
                     <div>{spot.description}</div>
                 </div>
                 <div className='callout-container'>
-                    {/* <div className='callout-header'>
+                    <div className='callout-header'>
                         <div>${spot.price}/night</div>
                         <div>
                             <FaStar /> {spot.aveReviews > 0 ? spot.aveRating.toFixed(2) : 'New'} · {spot.numReviews} reviews
                         </div>
                     </div>
-                    <button>Reserve</button> */}
+                    <button>Reserve</button>
                 </div>
             </div>
         </div>
