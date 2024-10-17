@@ -12,6 +12,7 @@ const SpotDetailsPage = () => {
     const { id } = useParams();
     const spot = useSelector(state => state.spots.selectedSpot);
     const spotReviews = useSelector(state => state.spots.spotReviews);
+    const currentUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(spotDetails(id))
@@ -78,16 +79,19 @@ const SpotDetailsPage = () => {
                 </div>
                 <div>
                     {spotReviews.length > 0 ? (
-                        spotReviews.map(({ User, createdAt, userId, review}) => (
-                            <div className='review-list' key={userId}>
-                                <div>{User.firstName}</div>
-                                <div>{createdAt}</div>
-                                {review}
-                            </div>
-                        ))
-
-                    ) : (
-                        <div>New</div>
+                        spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review}) => {
+                            const options = { year: 'numeric', month: 'long' };
+                            
+                            return (
+                                <div className='review-list' key={userId}>
+                                    <div>{User.firstName}</div>
+                                    <div>{new Date(createdAt).toLocaleDateString(undefined, options)}</div>
+                                    {review}
+                                </div>
+                            );
+                        })
+                    ) : currentUser && currentUser.id !== spot.Owner.id && (
+                        <div>Be the first to post a review!</div>
                     )}
                 </div>
             </div>
