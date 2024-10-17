@@ -54,7 +54,13 @@ const SpotDetailsPage = () => {
                     <div className='callout-header'>
                         <div>${spot.price}/night</div>
                         <div>
-                            <FaStar /> {parseFloat(spot.avgStarRating) > 0 ? parseFloat(spot.avgStarRating).toFixed(2) : 'New'} · {spot.numReviews} reviews
+                            {   spot.numReviews > 1 ? (
+                                <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews}  Reviews</div>
+                            ) : spot.numReviews === 1 ? (
+                                <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews}  Review</div>
+                            ) : spot.numReviews === 0 (
+                                <div>New</div>
+                            )}                            
                         </div>
                     </div>
                     <button onClick={handleReserveButton}>Reserve</button>
@@ -62,9 +68,15 @@ const SpotDetailsPage = () => {
             </div>
             <div className='review-container'>
                 <div className='review-header'>
-                    <FaStar /> {parseFloat(spot.avgStarRating) > 0 ? parseFloat(spot.avgStarRating).toFixed(2) : 'New'} · {spot.numReviews} reviews
+                    {   spot.numReviews > 1 ? (
+                        <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews} Reviews</div>
+                    ) : spot.numReviews === 1 ? (
+                        <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews} Review</div>
+                    ) : spot.numReviews === 0 (
+                        <div><FaStar /> New</div>
+                    )}
                 </div>
-                {/* <div>
+                <div>
                     {spotReviews.length > 0 ? (
                         spotReviews.map(({ User, createdAt, userId, review}) => (
                             <div className='review-list' key={userId}>
@@ -73,10 +85,11 @@ const SpotDetailsPage = () => {
                                 {review}
                             </div>
                         ))
+
                     ) : (
                         <div>New</div>
                     )}
-                </div> */}
+                </div>
             </div>
         </div>
     );
