@@ -13,7 +13,7 @@ const CreateSpotFormPage = () => {
         <div className='container'>
 
             <h1>Create a New Spot</h1>
-            <h3>Where&aposs your place located?</h3>
+            <h3>Where&apos;s your place located?</h3>
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <form className="form-items">
                 <label>
@@ -60,7 +60,16 @@ const CreateSpotFormPage = () => {
                 </label>
             </form>
 
-            
+            <h3>Create a title for your spot</h3>
+            <p>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
+            <form className="form-items">
+            <label>                    
+                    <input
+                        type="text"
+                        placeholder="Name of your spot"                        
+                    />
+                </label>
+            </form>
         </div>
     );
 };
