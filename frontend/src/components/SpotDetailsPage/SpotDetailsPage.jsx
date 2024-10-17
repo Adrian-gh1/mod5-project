@@ -11,17 +11,18 @@ const SpotDetailsPage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const spot = useSelector(state => state.spots.selectedSpot);
+    const spotReviews = useSelector(state => state.spots.spotReviews);
 
     useEffect(() => {
         dispatch(spotDetails(id))
     }, [dispatch, id]);
 
     if (!spot) {
-        return (
-            <div>
-                Loading...
-            </div>
-        );
+        return <div>Loading...</div>
+    }
+
+    if (!spotReviews) {
+        return <div>Loading...</div>
     }
 
     const handleReserveButton = () => {
@@ -53,11 +54,29 @@ const SpotDetailsPage = () => {
                     <div className='callout-header'>
                         <div>${spot.price}/night</div>
                         <div>
-                            <FaStar /> {spot.aveReviews > 0 ? spot.aveRating.toFixed(2) : 'New'} · {spot.numReviews} reviews
+                            <FaStar /> {parseFloat(spot.avgStarRating) > 0 ? parseFloat(spot.avgStarRating).toFixed(2) : 'New'} · {spot.numReviews} reviews
                         </div>
                     </div>
                     <button onClick={handleReserveButton}>Reserve</button>
                 </div>
+            </div>
+            <div className='review-container'>
+                <div className='review-header'>
+                    <FaStar /> {parseFloat(spot.avgStarRating) > 0 ? parseFloat(spot.avgStarRating).toFixed(2) : 'New'} · {spot.numReviews} reviews
+                </div>
+                {/* <div>
+                    {spotReviews.length > 0 ? (
+                        spotReviews.map(({ User, createdAt, userId, review}) => (
+                            <div className='review-list' key={userId}>
+                                <div>{User.firstName}</div>
+                                <div>{createdAt}</div>
+                                {review}
+                            </div>
+                        ))
+                    ) : (
+                        <div>New</div>
+                    )}
+                </div> */}
             </div>
         </div>
     );
