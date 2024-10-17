@@ -74,12 +74,47 @@ const CreateSpotFormPage = () => {
             <h3>Set a base price for your spot</h3>
             <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
             <form className="form-items">
-            <label>
-                $                  
-                 <input
-                    type="text"
-                    placeholder="Price per night (USD)"                        
-                />
+                <label>
+                    $                  
+                    <input
+                        type="text"
+                        placeholder="Price per night (USD)"                        
+                    />
+                </label>
+            </form>
+
+            <h3>Liven up your spot with photos</h3>
+            <p>Submit a link to at least one photo to publish your spot.</p>
+            <form className="form-items">
+                <label>               
+                    <input
+                        type="text"
+                        placeholder="Preview Image URL"                        
+                    />
+                </label>
+                <label>               
+                    <input
+                        type="text"
+                        placeholder="Image URL"                        
+                    />
+                </label>
+                <label>               
+                    <input
+                        type="text"
+                        placeholder="Image URL"                        
+                    />
+                </label>
+                <label>               
+                    <input
+                        type="text"
+                        placeholder="Image URL"                        
+                    />
+                </label>
+                <label>               
+                    <input
+                        type="text"
+                        placeholder="Image URL"                        
+                    />
                 </label>
             </form>
         </div>
