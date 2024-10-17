@@ -63,11 +63,23 @@ const CreateSpotFormPage = () => {
             <h3>Create a title for your spot</h3>
             <p>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
             <form className="form-items">
-            <label>                    
+                <label>                    
                     <input
                         type="text"
                         placeholder="Name of your spot"                        
                     />
+                </label>
+            </form>
+
+            <h3>Set a base price for your spot</h3>
+            <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+            <form className="form-items">
+            <label>
+                $                  
+                 <input
+                    type="text"
+                    placeholder="Price per night (USD)"                        
+                />
                 </label>
             </form>
         </div>
