@@ -9,7 +9,7 @@ const CreateSpotFormPage = () => {
 
     return (
         <div className='container'>
-            {/* Create Spot Form */}
+            Create a New Spot
         </div>
     );
 };
