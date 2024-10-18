@@ -31,7 +31,7 @@ const SpotDetailsPage = () => {
     };
 
     return (
-        <div className='container'>
+        <div className='spot-container'>
             <h1>{spot.name}</h1>
             <div>
                 {spot.city}, {spot.state}, {spot.country}
@@ -44,7 +44,7 @@ const SpotDetailsPage = () => {
                     ))}
                 </div>
             </div>
-            <div className='contents'>
+            <div className='spot-contents'>
                 <div>
                     <div>
                         Hosted by: {spot.Owner.firstName} {spot.Owner.lastName}

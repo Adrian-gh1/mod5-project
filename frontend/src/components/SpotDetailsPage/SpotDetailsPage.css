@@ -1,4 +1,4 @@
-.container {
+.spot-container {
     padding: 20px;
     /* display: flex; */
     /* justify-content: space-between; */
@@ -8,7 +8,7 @@
 
 } */
 
-.contents {
+.spot-contents {
     display: flex;
     justify-content: space-between;
 }
