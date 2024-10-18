@@ -30,8 +30,8 @@ const SpotDetailsPage = () => {
         alert('Feature coming soon');
     };
 
-    const ownerVerification = currentUser.id === spot.Owner.id;
-    const reviewVerification = spotReviews.some(review => review.userId === currentUser?.id);
+    const ownerVerification = currentUser && currentUser.id === spot.Owner.id;
+    const reviewVerification = currentUser && spotReviews.some(review => review.userId === currentUser?.id);
 
     return (
         <div className='spot-container'>
@@ -96,7 +96,7 @@ const SpotDetailsPage = () => {
                                 </div>
                             );
                         })
-                    ) : currentUser && !ownerVerification && (
+                    ) : !ownerVerification && (
                         <div>Be the first to post a review!</div>
                     )}
                 </div>
