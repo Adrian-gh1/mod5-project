@@ -1,19 +1,22 @@
 // frontend/src/components/CreateSpotFormPage/CreateSpotFormPage.jsx
 
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createSpot, addImage } from "../../store/spots";
 import './CreateSpotFormPage.css';
 
 const CreateSpotFormPage = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [country, setCountry] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
-    const [state, SetState] = useState('');
-    const [description, SetDescription] = useState('');
-    const [price, SetPrice] = useState('');
-    const [title, SetTitle] = useState('');
-    const [images, SetImages] = useState('');
+    const [state, setState] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [name, setName] = useState('');
+    const [images, setImages] = useState(['']);
 
     const [errors, setErrors] = useState({});
 
@@ -24,13 +27,13 @@ const CreateSpotFormPage = () => {
         if (city.length === 0) errorList.city = 'City is required';
         if (state.length === 0) errorList.state = 'State is required';
         if (description.length < 30) errorList.description = 'Description needs a minimum of 30 characters';
-        if (title.length === 0) errorList.title = 'Name is required';
+        if (name.length === 0) errorList.name = 'Name is required';
         if (price.length <= 0) errorList.price = 'Price per night is required';
         if (images.length === 0) errorList.images = 'Preview Image URL is required';
         return errorList;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
 
@@ -39,6 +42,25 @@ const CreateSpotFormPage = () => {
             setErrors(errorForm);
             return;
         }
+
+        const newSpotData = {
+            country,
+            address,
+            city,
+            state,
+            description,
+            price,
+            name,
+            lat: 0, // NOTE: Set to any value, won't be used but needed due to backend
+            lng: 0, // NOTE: Set to any value, won't be used but needed due to backend
+            // images: [images]
+        };
+
+        const newSpot = await dispatch(createSpot(newSpotData));
+
+        await dispatch(addImage(newSpot.id, { url: images, preview: true }));
+
+        navigate(`/spots/${newSpot.id}`);
     };  
 
     return (
@@ -91,7 +113,7 @@ const CreateSpotFormPage = () => {
                             <input
                                 type="text"
                                 value={state}
-                                onChange={(e) => SetState(e.target.value)}
+                                onChange={(e) => setState(e.target.value)}
                                 placeholder="State"                        
                             />
                         </div>
@@ -106,7 +128,7 @@ const CreateSpotFormPage = () => {
                             <input
                                 type="text"
                                 value={description}
-                                onChange={(e) => SetDescription(e.target.value)}
+                                onChange={(e) => setDescription(e.target.value)}
                                 placeholder="Please write at least 30 characters"                        
                             />
                         </label>
@@ -120,12 +142,12 @@ const CreateSpotFormPage = () => {
                     <label>                    
                         <input
                             type="text"
-                            value={title}
-                            onChange={(e) => SetTitle(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             placeholder="Name of your spot"                        
                         />
                     </label>
-                    {errors.title && <div className='error'>{errors.title}</div>}
+                    {errors.name && <div className='error'>{errors.name}</div>}
                 </div>
 
                 <div className="form-items">
@@ -136,7 +158,7 @@ const CreateSpotFormPage = () => {
                         <input
                             type="text"
                             value={price}
-                            onChange={(e) => SetPrice(e.target.value)}
+                            onChange={(e) => setPrice(e.target.value)}
                             placeholder="Price per night (USD)"                        
                         />
                     </label>
@@ -151,7 +173,7 @@ const CreateSpotFormPage = () => {
                             <input
                                 type="text"
                                 value={images}
-                                onChange={(e) => SetImages(e.target.value)}
+                                onChange={(e) => setImages(e.target.value)}
                                 placeholder="Preview Image URL"                        
                             />
                         </label>

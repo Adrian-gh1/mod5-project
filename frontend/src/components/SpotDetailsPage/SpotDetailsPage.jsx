@@ -59,8 +59,8 @@ const SpotDetailsPage = () => {
                                 <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews}  Reviews</div>
                             ) : spot.numReviews === 1 ? (
                                 <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews}  Review</div>
-                            ) : spot.numReviews === 0 (
-                                <div>New</div>
+                            ) : (
+                                <div><FaStar /> New</div>
                             )}                            
                         </div>
                     </div>
@@ -73,7 +73,7 @@ const SpotDetailsPage = () => {
                         <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews} Reviews</div>
                     ) : spot.numReviews === 1 ? (
                         <div><FaStar /> {parseFloat(spot.avgStarRating).toFixed(2)} · {spot.numReviews} Review</div>
-                    ) : spot.numReviews === 0 (
+                    ) : (
                         <div><FaStar /> New</div>
                     )}
                 </div>
