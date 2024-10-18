@@ -77,6 +77,9 @@ const SpotDetailsPage = () => {
                         <div><FaStar /> New</div>
                     )}
                 </div>
+                {currentUser && !spotReviews.some(review => review.userId === currentUser?.id) && (
+                    <button>Post Your Review</button>
+                )}
                 <div>
                     {spotReviews.length > 0 ? (
                         spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review}) => {
