@@ -16,5 +16,10 @@
     justify-content: center;
     gap: 5px;
     padding-top: 20px;
-    padding-bottom: 20px;
+}
+
+.submit-review-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
 }

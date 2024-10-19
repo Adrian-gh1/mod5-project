@@ -3,19 +3,22 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { FaRegStar } from 'react-icons/fa';
+import { FaRegStar, FaStar } from 'react-icons/fa';
 import './ReviewFormModal.css'
 
 const ReviewFormModal = () => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [review, setReview] = useState('');
-    const [rating, setRating] = useState(1);
+    const [rating, setRating] = useState(0);
+    const [hover, setHover] = useState(0);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         closeModal();
     };
+
+    const submitButtonDisabled = review.length < 10 || rating === 0;
     
     return (
         <div className='review-form-container'>
@@ -32,7 +35,25 @@ const ReviewFormModal = () => {
                     />
                 </div>
                 <div className='star-rating'>
-                    <FaRegStar/> <FaRegStar/> <FaRegStar/> <FaRegStar/> <FaRegStar/> Stars
+                    {/* <FaRegStar/> <FaRegStar/> <FaRegStar/> <FaRegStar/> <FaRegStar/> Stars */}
+                    {[...Array(5)].map((_, index) => (
+                        <span
+                                key={index}
+                                onMouseEnter={() => setHover(index + 1)}
+                                onMouseLeave={() => setHover(0)}
+                                onClick={() => setRating(index + 1)}
+                            >
+                                {index < (hover || rating) ? (
+                                    <FaStar color='black' />
+                                ) : (
+                                    <FaRegStar />
+                                )}
+                        </span>
+                    ))}
+                    <span> Stars</span>
+                </div>
+                <div className='submit-review-button'>
+                    <button type='submit' disabled={submitButtonDisabled}>Submit Your Review</button>
                 </div>
             </form>
         </div>
