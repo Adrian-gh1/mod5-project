@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { spotDetails } from '../../store/spots';
+import { useModal } from '../../context/Modal';
+import ReviewFormModal from "../ReviewFormModal/ReviewFormModal";
 import './SpotDetailsPage.css';
 
 const SpotDetailsPage = () => {
@@ -13,6 +15,8 @@ const SpotDetailsPage = () => {
     const spot = useSelector(state => state.spots.selectedSpot);
     const spotReviews = useSelector(state => state.spots.spotReviews);
     const currentUser = useSelector(state => state.session.user);
+
+    const { setModalContent } = useModal();
 
     useEffect(() => {
         dispatch(spotDetails(id))
@@ -28,6 +32,10 @@ const SpotDetailsPage = () => {
 
     const handleReserveButton = () => {
         alert('Feature coming soon');
+    };
+
+    const handleReviewButton = () => {
+        setModalContent(<ReviewFormModal />);
     };
 
     const ownerVerification = currentUser && currentUser.id === spot.Owner.id;
@@ -80,9 +88,11 @@ const SpotDetailsPage = () => {
                         <div><FaStar /> New</div>
                     )}
                 </div>
-                {currentUser && !reviewVerification && !ownerVerification && (
-                    <button>Post Your Review</button>
-                )}
+                <div className='review-button'>
+                    {currentUser && !reviewVerification && !ownerVerification && (
+                        <button onClick={handleReviewButton}>Post Your Review</button>
+                    )}
+                </div>
                 <div>
                     {spotReviews.length > 0 ? (
                         spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review}) => {
