@@ -7,12 +7,14 @@ const LOAD_SPOT_DETAILS = 'spots/loadSpotDetails';
 const LOAD_SPOT_REVIEWS = 'spots/loadSpotReviews';
 const CREATE_SPOT = 'spots/createSpot';
 const ADD_IMAGE = 'spots/addImage';
+const ADD_REVIEW = 'spots/addReview';
 const initialState = {
   spots: [],
   selectedSpot: null,
   spotReviews: []
 };
 
+// Acion Creators
 export const loadSpots = (spots) => {
     return {
         type: LOAD_SPOTS,
@@ -48,6 +50,14 @@ export const imageAction = (image) => {
   };
 };
 
+export const reviewAction = (review) => {
+  return {
+    type: ADD_REVIEW,
+    review
+  };
+};
+
+// Thunk Actions
 export const allSpots = () => async (dispatch) => {
   const response = await csrfFetch('/api/spots', {
     method: 'GET'
@@ -83,7 +93,7 @@ export const createSpot = (spotData) => async (dispatch) => {
     body: JSON.stringify(spotData)
   });
   const data = await response.json();
-  dispatch(addSpot(data))
+  dispatch(addSpot(data));
   return data;
 };
 
@@ -96,10 +106,38 @@ export const addImage = (spotId, imageData) => async (dispatch) => {
     body: JSON.stringify(imageData)
   });
   const data = await response.json();
-  dispatch(imageAction(data))
+  dispatch(imageAction(data));
   return data;
 }; 
 
+export const addReview = (spotId, reviewData) => async (dispatch) => {
+  console.log('Data 2:', spotId, reviewData);
+  
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(reviewData)
+  });
+  const data = await response.json();
+
+  const userData = {
+    ...data,
+    User: {
+        id: reviewData.User.id,
+        firstName: reviewData.User.firstName,
+        lastName: reviewData.User.lastName
+    }
+  };
+
+  console.log('Data 3:', userData);
+
+  dispatch(reviewAction(userData));
+  return userData;
+}; 
+
+// Reducer
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_SPOTS:
@@ -112,6 +150,11 @@ const spotsReducer = (state = initialState, action) => {
       return { ...state, spots: [ ...state.spots, action.spot]};
     case ADD_IMAGE:
       return { ...state, selectedSpot: { ...state.selectedSpot, SpotImages: [...state.selectedSpot.SpotImages, action.image]}};
+    case ADD_REVIEW:
+      return { ...state, spotReviews: [action.review, ...state.spotReviews]}; // NOTE: action.review is first so that the rview shows up at the top o fthe review list
+      // const newState = { ...state, spotReviews: [action.review, ...state.spotReviews] };
+      // console.log('Data 3:', newState);
+      // return newState;
     default:
       return state;
   }

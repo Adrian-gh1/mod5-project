@@ -34,8 +34,12 @@ const SpotDetailsPage = () => {
         alert('Feature coming soon');
     };
 
+    const reviewSubmitted = () => {
+        dispatch(spotDetails(id));
+    };
+
     const handleReviewButton = () => {
-        setModalContent(<ReviewFormModal />);
+        setModalContent(<ReviewFormModal spotId={id} currentUser={currentUser} reviewSubmitted={reviewSubmitted}/>);
     };
 
     const ownerVerification = currentUser && currentUser.id === spot.Owner.id;
@@ -95,7 +99,10 @@ const SpotDetailsPage = () => {
                 </div>
                 <div>
                     {spotReviews.length > 0 ? (
+                        (console.log('Data 4:', currentUser)),
+                        (console.log('Data 5:', spotReviews)),
                         spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review}) => {
+                            console.log('Data 6:', User);                            
                             const options = { year: 'numeric', month: 'long' };
                             
                             return (

@@ -2,33 +2,55 @@
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+// import { useParams } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { FaRegStar, FaStar } from 'react-icons/fa';
+import { addReview } from '../../store/spots';
 import './ReviewFormModal.css'
 
-const ReviewFormModal = () => {
+const ReviewFormModal = ({ spotId, currentUser, reviewSubmitted }) => {
+    // console.log('Data 1:', spotId);
+    // const { spotId } = useParams();
+    // console.log('Data 2:', spotId);
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [review, setReview] = useState('');
-    const [rating, setRating] = useState(0);
+    const [stars, setStars] = useState(0);
     const [hover, setHover] = useState(0);
     const [errors, setErrors] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // closeModal();
+        setErrors('');
 
-        return dispatch(_______({ review, rating }))
-            .then(closeModal)
+        console.log('Data 1', stars, typeof stars);
+
+        const reviewData = {
+            review,
+            stars,
+            ReviewImages: [],
+            User: {
+                id: currentUser.id,
+                firstName: currentUser.firstName,
+                lastName: currentUser.lastName
+            }
+        };
+
+        return dispatch(addReview(spotId, reviewData))
+            .then(() => {
+                reviewSubmitted();
+                closeModal();
+            })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.message) {
-                setErrors('Server Error');
+                    setErrors(data.message);
+                    // setErrors('Server Error');
                 }
             });
     };
 
-    const submitButtonDisabled = review.length < 10 || rating === 0;
+    const submitButtonDisabled = review.length < 10 || stars === 0;
     
     return (
         <div className='review-form-container'>
@@ -52,9 +74,9 @@ const ReviewFormModal = () => {
                                 key={index}
                                 onMouseEnter={() => setHover(index + 1)}
                                 onMouseLeave={() => setHover(0)}
-                                onClick={() => setRating(index + 1)}
+                                onClick={() => setStars(index + 1)}
                             >
-                                {index < (hover || rating) ? (
+                                {index < (hover || stars) ? (
                                     <FaStar color='black' />
                                 ) : (
                                     <FaRegStar />
