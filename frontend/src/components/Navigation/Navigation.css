@@ -9,6 +9,7 @@
 .auth-buttons {
     display: flex;
     gap: 50px;
+    z-index: 100;
 }
 
 .auth-buttons button {
