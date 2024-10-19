@@ -19,8 +19,6 @@ const ReviewFormModal = ({ spotId, currentUser, reviewSubmitted }) => {
         e.preventDefault();
         setErrors('');
 
-        console.log('Data 1', stars, typeof stars);
-
         const reviewData = {
             review,
             stars,

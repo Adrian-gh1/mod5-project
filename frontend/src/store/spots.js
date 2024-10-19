@@ -8,10 +8,12 @@ const LOAD_SPOT_REVIEWS = 'spots/loadSpotReviews';
 const CREATE_SPOT = 'spots/createSpot';
 const ADD_IMAGE = 'spots/addImage';
 const ADD_REVIEW = 'spots/addReview';
+const LOAD_USER_SPOTS = 'spots/loadUserSpots'
 const initialState = {
   spots: [],
   selectedSpot: null,
-  spotReviews: []
+  spotReviews: [],
+  userSpots: []
 };
 
 // Acion Creators
@@ -54,6 +56,13 @@ export const reviewAction = (review) => {
   return {
     type: ADD_REVIEW,
     review
+  };
+};
+
+export const userSpotsAction = (userSpots) => {
+  return {
+    type: LOAD_USER_SPOTS,
+    userSpots
   };
 };
 
@@ -131,6 +140,18 @@ export const addReview = (spotId, reviewData) => async (dispatch) => {
 
   dispatch(reviewAction(userData));
   return userData;
+};
+
+export const userSpots = () => async (dispatch) => {
+  const response = await csrfFetch('/api/spots/current', {
+    method: 'GET',
+  });
+  const data = await response.json();
+  console.log('Data 1:', data);
+  
+  dispatch(userSpotsAction(data.Spots));
+  console.log('Data 2:', data);
+  return data;
 }; 
 
 // Reducer
@@ -148,6 +169,8 @@ const spotsReducer = (state = initialState, action) => {
       return { ...state, selectedSpot: { ...state.selectedSpot, SpotImages: [...state.selectedSpot.SpotImages, action.image]}};
     case ADD_REVIEW:
       return { ...state, spotReviews: [action.review, ...state.spotReviews]}; // NOTE: action.review is first so that the rview shows up at the top o fthe review list
+    case LOAD_USER_SPOTS:
+      return { ...state, userSpots: action.userSpots}
     default:
       return state;
   }

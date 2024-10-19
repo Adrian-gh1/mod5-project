@@ -5,9 +5,12 @@ import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
 import * as sessionActions from '../../store/session';
 // import OpenModalButton from '../OpenModalButton';
+import { NavLink } from 'react-router-dom';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+// import ManageSpotsPage from '../ManageSpotsPage/ManageSpotsPage';
+import './Navigation.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -49,22 +52,30 @@ function ProfileButton({ user }) {
         <FaUserCircle />
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        {/* <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
-        <li>{user.email}</li>
-        <li>
-          <button onClick={logout}>Log Out</button>
-        </li> */}
         {user ? (
           <>
-            <li>Hello, {user.firstName}</li>
-            
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
+            <div className='login-menu'>
+              
+              <div className='subsection1'>
+                <div>
+                  Hello, {user.firstName}
+                </div>
+                <div>
+                  {user.email}
+                </div>
+              </div>
+
+              <div className='subsection2'>
+                <NavLink to='/spots/current' className='manage-spots-link'>
+                  Manage Spots
+                </NavLink>
+              </div>
+
+              <div className='subsection3'>
+                <button onClick={logout}>Log Out</button>
+              </div>
+
+            </div>
           </>
         ) : (
           <>
