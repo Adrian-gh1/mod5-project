@@ -11,6 +11,11 @@
     z-index: 100;
 }
 
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
 .star-rating {
     display: flex;
     justify-content: center;

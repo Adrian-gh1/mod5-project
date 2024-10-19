@@ -12,10 +12,20 @@ const ReviewFormModal = () => {
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+    const [errors, setErrors] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        closeModal();
+        // closeModal();
+
+        return dispatch(_______({ review, rating }))
+            .then(closeModal)
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.message) {
+                setErrors('Server Error');
+                }
+            });
     };
 
     const submitButtonDisabled = review.length < 10 || rating === 0;
@@ -23,6 +33,7 @@ const ReviewFormModal = () => {
     return (
         <div className='review-form-container'>
             <h3>How was your stay?</h3>
+            {errors && <div className='error-message'>{errors}</div>}
             <form onSubmit={handleSubmit}>
                 <div >
                     <input
