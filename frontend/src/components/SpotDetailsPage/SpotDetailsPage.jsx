@@ -99,10 +99,7 @@ const SpotDetailsPage = () => {
                 </div>
                 <div>
                     {spotReviews.length > 0 ? (
-                        (console.log('Data 4:', currentUser)),
-                        (console.log('Data 5:', spotReviews)),
-                        spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review}) => {
-                            console.log('Data 6:', User);                            
+                        spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review}) => {                      
                             const options = { year: 'numeric', month: 'long' };
                             
                             return (

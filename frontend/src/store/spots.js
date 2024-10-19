@@ -110,9 +110,7 @@ export const addImage = (spotId, imageData) => async (dispatch) => {
   return data;
 }; 
 
-export const addReview = (spotId, reviewData) => async (dispatch) => {
-  console.log('Data 2:', spotId, reviewData);
-  
+export const addReview = (spotId, reviewData) => async (dispatch) => {  
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: 'POST',
     headers: {
@@ -130,8 +128,6 @@ export const addReview = (spotId, reviewData) => async (dispatch) => {
         lastName: reviewData.User.lastName
     }
   };
-
-  console.log('Data 3:', userData);
 
   dispatch(reviewAction(userData));
   return userData;
@@ -152,9 +148,6 @@ const spotsReducer = (state = initialState, action) => {
       return { ...state, selectedSpot: { ...state.selectedSpot, SpotImages: [...state.selectedSpot.SpotImages, action.image]}};
     case ADD_REVIEW:
       return { ...state, spotReviews: [action.review, ...state.spotReviews]}; // NOTE: action.review is first so that the rview shows up at the top o fthe review list
-      // const newState = { ...state, spotReviews: [action.review, ...state.spotReviews] };
-      // console.log('Data 3:', newState);
-      // return newState;
     default:
       return state;
   }

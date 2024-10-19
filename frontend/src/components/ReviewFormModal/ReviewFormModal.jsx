@@ -2,16 +2,12 @@
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useParams } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import { addReview } from '../../store/spots';
 import './ReviewFormModal.css'
 
 const ReviewFormModal = ({ spotId, currentUser, reviewSubmitted }) => {
-    // console.log('Data 1:', spotId);
-    // const { spotId } = useParams();
-    // console.log('Data 2:', spotId);
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [review, setReview] = useState('');
