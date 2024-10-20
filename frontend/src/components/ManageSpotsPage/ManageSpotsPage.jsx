@@ -2,13 +2,14 @@
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { userSpots } from '../../store/spots';
 // import './ManageSpotsPage.css';
 
 const ManageSpotsPage = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const currentUser = useSelector(state => state.session.user);
     const userSpotList = useSelector(state => state.spots.userSpots);
 
@@ -17,6 +18,14 @@ const ManageSpotsPage = () => {
             dispatch(userSpots());
         }
     }, [dispatch, currentUser]);
+
+    const handleUpdateButton = (spotId) => {
+        navigate(`/spots/${spotId}/edit`);
+    };
+
+    // const handleDeleteButton = () => {
+
+    // };
 
     return (
         <div className='tile-container'>
@@ -36,7 +45,7 @@ const ManageSpotsPage = () => {
                                     </NavLink>
                                 </div>
                                 <div className='update-delete-buttons'>
-                                    <button>Update</button>
+                                    <button onClick={() => handleUpdateButton(spot.id)}>Update</button>
                                     <button>Delete</button>
                                 </div>
                             </div>

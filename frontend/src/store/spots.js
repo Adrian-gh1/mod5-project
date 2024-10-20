@@ -9,6 +9,7 @@ const CREATE_SPOT = 'spots/createSpot';
 const ADD_IMAGE = 'spots/addImage';
 const ADD_REVIEW = 'spots/addReview';
 const LOAD_USER_SPOTS = 'spots/loadUserSpots'
+const UPDATE_SPOT = 'spots/updateSpot';
 const initialState = {
   spots: [],
   selectedSpot: null,
@@ -63,6 +64,13 @@ export const userSpotsAction = (userSpots) => {
   return {
     type: LOAD_USER_SPOTS,
     userSpots
+  };
+};
+
+export const updateSpotAction = (spot) => {
+  return {
+    type: UPDATE_SPOT,
+    spot
   };
 };
 
@@ -146,13 +154,23 @@ export const userSpots = () => async (dispatch) => {
   const response = await csrfFetch('/api/spots/current', {
     method: 'GET',
   });
-  const data = await response.json();
-  console.log('Data 1:', data);
-  
+  const data = await response.json();  
   dispatch(userSpotsAction(data.Spots));
-  console.log('Data 2:', data);
   return data;
-}; 
+};
+
+export const updateSpot = (spotId, spotData) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(spotData)
+  });
+  const data = await response.json();  
+  dispatch(updateSpotAction(data));
+  return data;
+};
 
 // Reducer
 const spotsReducer = (state = initialState, action) => {
@@ -171,6 +189,8 @@ const spotsReducer = (state = initialState, action) => {
       return { ...state, spotReviews: [action.review, ...state.spotReviews]}; // NOTE: action.review is first so that the rview shows up at the top o fthe review list
     case LOAD_USER_SPOTS:
       return { ...state, userSpots: action.userSpots}
+    case UPDATE_SPOT:
+      return { ...state, spots: state.spots.map(spot => (spot.id === action.spot.id ? action.spot : spot))}
     default:
       return state;
   }

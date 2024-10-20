@@ -1,14 +1,16 @@
-// frontend/src/components/CreateSpotFormPage/CreateSpotFormPage.jsx
+// frontend/src/components/UpdateSpotFormPage/UpdateSpotFormPage.jsx
 
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { createSpot, addImage } from "../../store/spots";
-import './CreateSpotFormPage.css';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { spotDetails, updateSpot } from "../../store/spots";
 
-const CreateSpotFormPage = () => {
+const UpdateSpotFormPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const selectedSpot = useSelector(state => state.spots.selectedSpot);
+    
+    const { id } = useParams();
     const [country, setCountry] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -16,9 +18,31 @@ const CreateSpotFormPage = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [name, setName] = useState('');
-    const [images, setImages] = useState(['', '', '', '', '']);
+    const [images, setImages] = useState([]);
 
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        const loadSpot = async () => {
+            await dispatch(spotDetails(id));
+        };
+        loadSpot();
+    }, [dispatch, id]);
+
+    useEffect(() => {
+        if (selectedSpot) {
+            setCountry(selectedSpot.country);
+            setAddress(selectedSpot.address);
+            setCity(selectedSpot.city);
+            setState(selectedSpot.state);
+            setDescription(selectedSpot.description);
+            setPrice(selectedSpot.price);
+            setName(selectedSpot.name);
+            // setImages(selectedSpot.images || []);
+            const spotImages = selectedSpot.SpotImages.map(img => img.url);
+            setImages([...spotImages]);
+        }
+    }, [selectedSpot]);
 
     const validationErrors = () => {
         const errorList = {};
@@ -43,7 +67,7 @@ const CreateSpotFormPage = () => {
             return;
         }
 
-        const newSpotData = {
+        const updatedSpotData = {
             country,
             address,
             city,
@@ -53,26 +77,18 @@ const CreateSpotFormPage = () => {
             name,
             lat: 0, // NOTE: Set to any value, won't be used but needed due to backend
             lng: 0, // NOTE: Set to any value, won't be used but needed due to backend
-            images
+            images: images.filter(img => img.trim() !== '')
         };
 
-        const newSpot = await dispatch(createSpot(newSpotData));
+        await dispatch(updateSpot(id, updatedSpotData));
 
-        // await dispatch(addImage(newSpot.id, { url: images, preview: true }));
-
-        for (let i = 0; i < images.length; i++) {
-            if (images[i]) {
-                await dispatch(addImage(newSpot.id, { url: images[i], preview: i === 0 }));
-            }
-        }
-
-        navigate(`/spots/${newSpot.id}`);
+        navigate(`/spots/${id}`);
     };  
 
     return (
         <div className='new-spot-container'>
 
-            <h1>Create a New Spot</h1>
+            <h1>Update your Spot</h1>
             <h3>Where&apos;s your place located?</h3>
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <form onSubmit={handleSubmit}>
@@ -252,7 +268,7 @@ const CreateSpotFormPage = () => {
                 </div>
 
                 <div>
-                    <button type='submit'>Create Spot</button>
+                    <button type='submit'>Update Spot</button>
                 </div>
 
             </form>
@@ -260,4 +276,4 @@ const CreateSpotFormPage = () => {
     );
 };
 
-export default CreateSpotFormPage;
+export default UpdateSpotFormPage;
