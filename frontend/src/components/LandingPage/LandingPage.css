@@ -19,12 +19,18 @@
 
     text-decoration: none;
     color: inherit;
+
+    /* display: flex; 
+    flex-direction: column;  */
+    /* align-items: center;  */
+
 }
 
 .tile img {
     width: 100%;
     height: auto;
     display: block;
+    /* max-height: 200px */
 }
 
 .tile:hover {
@@ -36,6 +42,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.update-delete-buttons {
+    display: flex;
+    padding: 15px;
+    gap: 10px;
 }
 
 @media (min-width: 768px) {
