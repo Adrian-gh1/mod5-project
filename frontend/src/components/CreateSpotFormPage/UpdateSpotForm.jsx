@@ -178,13 +178,15 @@ const UpdateSpotFormPage = () => {
                     <h3>Set a base price for your spot</h3>
                     <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                     <label>
-                        $                  
-                        <input
-                            type="text"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                            placeholder="Price per night (USD)"                        
-                        />
+                        <div className="price-input">
+                            $                  
+                            <input
+                                type="text"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                placeholder="Price per night (USD)"                        
+                            />
+                        </div>
                     </label>
                     {errors.price && <div className='error'>{errors.price}</div>}
                 </div>
@@ -193,19 +195,21 @@ const UpdateSpotFormPage = () => {
                     <h3>Liven up your spot with photos</h3>
                     <p>Submit a link to at least one photo to publish your spot.</p>
                     <div className="form-item5">
-                        <label>               
-                            <input
-                                type="text"
-                                value={images[0]}
-                                onChange={(e) => {
-                                    const newImages = [...images];
-                                    newImages[0] = e.target.value;
-                                    setImages(newImages);
-                                }}
-                                placeholder="Preview Image URL"                        
-                            />
-                        </label>
-                        {errors.images && <div className='error'>{errors.images}</div>}
+                        <div>
+                            <label>               
+                                <input
+                                    type="text"
+                                    value={images[0]}
+                                    onChange={(e) => {
+                                        const newImages = [...images];
+                                        newImages[0] = e.target.value;
+                                        setImages(newImages);
+                                    }}
+                                    placeholder="Preview Image URL"                        
+                                />
+                            </label>
+                            {errors.images && <div className='error'>{errors.images}</div>}
+                        </div>
 
                         <div>
                             <label>               

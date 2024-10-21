@@ -14,6 +14,7 @@ function Navigation({ isLoaded }) {
         <div className='logo'>
           <NavLink to='/'>
             <img src='/favicon.ico' alt='Logo' />
+            {/* <img src='../../public/brand_logo.jpg' alt='Logo' /> */}
           </NavLink>
         </div>
         <div className='auth-buttons'>
