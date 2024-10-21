@@ -32,36 +32,40 @@ const ManageSpotsPage = () => {
     };
 
     return (
-        <div className='tile-container'>
+        <div>
             <h2>Manage Spots</h2>
-            {userSpotList.length > 0 ? (
-                    <div>
-                        {userSpotList.map(spot => (
-                            <div key={spot.id}>
-                                <div className='tile'>
-                                    <NavLink to={`/spots/${spot.id}`} title={spot.name}>
-                                        <img src={spot.previewImage} alt={spot.name} />
-                                        <div className='tile-info'>
-                                            <p>{spot.city}, {spot.state}</p>
-                                            <p> <FaStar /> {typeof spot.avgRating === 'number' && spot.avgRating > 0 ? spot.avgRating.toFixed(2) : 'New'}</p>                            
-                                        </div>
-                                        <p>${spot.price}/night</p>
-                                    </NavLink>
-                                </div>
-                                <div className='update-delete-buttons'>
-                                    <button onClick={() => handleUpdateButton(spot.id)}>Update</button>
-                                    <button onClick={() => handleDeleteButton(spot.id)}>Delete</button>
-                                </div>
+            <div className='tile-container'>
+                {userSpotList.length > 0 ? (
+                    userSpotList.map(spot => (
+                        <NavLink to={`/spots/${spot.id}`} key={spot.id} className='tile' title={spot.name}>
+                            <img src={spot.previewImage} alt={spot.name} />
+                            <div className='tile-info'>
+                                <p>{spot.city}, {spot.state}</p>
+                                <p><FaStar /> {typeof spot.avgRating === 'number' && spot.avgRating > 0 ? spot.avgRating.toFixed(2) : 'New'}</p>                            
                             </div>
-                        ))}
-                    </div>
-            ) : (
-                <NavLink to="/spots/new" >
-                    Create a New Spot
-                </NavLink>
-            )}        
+                            <p>${spot.price}/night</p>
+                            <div className='update-delete-buttons'>
+                                <button onClick={(e) => {
+                                    e.preventDefault(); 
+                                    handleUpdateButton(spot.id)
+                                }} >Update</button>
+
+                                <button onClick={(e) => {
+                                    e.preventDefault(); 
+                                    handleDeleteButton(spot.id)
+                                }}>Delete</button>
+                            </div>
+                        </NavLink>
+                    ))
+
+                ) : (
+                    <NavLink to="/spots/new" >
+                        Create a New Spot
+                    </NavLink>
+                )}        
+            </div>
         </div>
-);
+    );
 };
 
 export default ManageSpotsPage;

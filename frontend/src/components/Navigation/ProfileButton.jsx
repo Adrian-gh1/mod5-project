@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
 import * as sessionActions from '../../store/session';
 // import OpenModalButton from '../OpenModalButton';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate  } from 'react-router-dom';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
@@ -14,6 +14,7 @@ import './Navigation.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -41,6 +42,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    navigate(`/`);
     closeMenu();
   };
 
@@ -66,7 +68,7 @@ function ProfileButton({ user }) {
               </div>
 
               <div className='subsection2'>
-                <NavLink to='/spots/current' className='manage-spots-link'>
+                <NavLink to='/spots/current' onClick={closeMenu} className='manage-spots-link'>
                   Manage Spots
                 </NavLink>
               </div>
