@@ -11,6 +11,7 @@ const ADD_REVIEW = 'spots/addReview';
 const LOAD_USER_SPOTS = 'spots/loadUserSpots'
 const UPDATE_SPOT = 'spots/updateSpot';
 const DELETE_SPOT = 'spots/deleteSpot';
+const DELETE_REVIEW = 'spots/deleteReview';
 const initialState = {
   spots: [],
   selectedSpot: null,
@@ -79,6 +80,13 @@ export const deleteSpotAction = (spotId) => {
   return {
     type: DELETE_SPOT,
     spotId
+  };
+};
+
+export const deleteReviewAction = (reviewId) => {
+  return {
+    type: DELETE_REVIEW,
+    reviewId
   };
 };
 
@@ -189,6 +197,15 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   return data;
 };
 
+export const deleteReview = (reviewId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: 'DELETE',
+  });
+  const data = await response.json();  
+  dispatch(deleteReviewAction(reviewId));
+  return data;
+};
+
 // Reducer
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -209,7 +226,9 @@ const spotsReducer = (state = initialState, action) => {
     case UPDATE_SPOT:
       return { ...state, spots: state.spots.map(spot => (spot.id === action.spot.id ? action.spot : spot))}
     case DELETE_SPOT:
-      return { ...state, spots: state.spots.filter(spot => spot.id !== action.spotId) };
+      return { ...state, spots: state.spots.filter(spot => spot.id !== action.spotId)};
+    case DELETE_REVIEW:
+      return { ...state, spotReviews: state.spotReviews.filter(review => review.id !== action.reviewId)};
     default:
       return state;
   }

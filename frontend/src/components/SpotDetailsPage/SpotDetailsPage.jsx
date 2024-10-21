@@ -7,6 +7,7 @@ import { FaStar } from 'react-icons/fa';
 import { spotDetails } from '../../store/spots';
 import { useModal } from '../../context/Modal';
 import ReviewFormModal from "../ReviewFormModal/ReviewFormModal";
+import DeleteReviewModal from '../DeleteReviewModal';
 import './SpotDetailsPage.css';
 
 const SpotDetailsPage = () => {
@@ -40,6 +41,12 @@ const SpotDetailsPage = () => {
 
     const handleReviewButton = () => {
         setModalContent(<ReviewFormModal spotId={id} currentUser={currentUser} reviewSubmitted={reviewSubmitted}/>);
+    };
+
+    const handleDeleteReviewButton = (reviewId) => {
+        console.log('Data 1:', reviewId);
+        
+        setModalContent(<DeleteReviewModal spotId={id} reviewId={reviewId} currentUser={currentUser}/>);
     };
 
     const ownerVerification = currentUser && currentUser.id === spot.Owner.id;
@@ -99,7 +106,7 @@ const SpotDetailsPage = () => {
                 </div>
                 <div>
                     {spotReviews.length > 0 ? (
-                        spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review}) => {                      
+                        spotReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(({ User, createdAt, userId, review, id}) => {                      
                             const options = { year: 'numeric', month: 'long' };
                             
                             return (
@@ -107,6 +114,13 @@ const SpotDetailsPage = () => {
                                     <div>{User.firstName}</div>
                                     <div>{new Date(createdAt).toLocaleDateString(undefined, options)}</div>
                                     {review}
+                                    <div>
+                                        {currentUser && userId === currentUser.id && (
+                                            <div className='delete-review-button'>
+                                                <button onClick={() => handleDeleteReviewButton(id)}>Delete</button>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             );
                         })
