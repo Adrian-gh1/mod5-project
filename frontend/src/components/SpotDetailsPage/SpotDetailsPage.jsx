@@ -54,23 +54,23 @@ const SpotDetailsPage = () => {
 
     return (
         <div className='spot-container'>
-            <h1>{spot.name}</h1>
-            <div>
-                {spot.city}, {spot.state}, {spot.country}
+            <div className='spot-title'>
+                <h1>{spot.name}</h1>
+                <div>
+                    {spot.city}, {spot.state}, {spot.country}
+                </div>
             </div>
             <div className='image-container'>
-                <img src={spot.previewImage} alt={spot.name} className='large-image'/>
+                <img src={spot.SpotImages[0]?.url} className='large-image'/>
                 <div className='small-image-container'>
-                    {spot.SpotImages.map((image, index) => (
+                    {spot.SpotImages.slice(1).map((image, index) => (
                         <img src={image.url} alt={`Image ${index + 1}`} key={index} className='small-images'/>
                     ))}
                 </div>
             </div>
             <div className='spot-contents'>
                 <div>
-                    <div>
-                        Hosted by: {spot.Owner.firstName} {spot.Owner.lastName}
-                    </div>
+                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
                     <div>{spot.description}</div>
                 </div>
                 <div className='callout-container'>
