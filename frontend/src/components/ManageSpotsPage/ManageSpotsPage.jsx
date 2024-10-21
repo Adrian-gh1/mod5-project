@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaPlus } from 'react-icons/fa';
 import { userSpots } from '../../store/spots';
 import { useModal } from '../../context/Modal';
 import DeleteSpotModal from '../DeleteSpotModal/DeleteSpotModal';
@@ -59,8 +59,12 @@ const ManageSpotsPage = () => {
                     ))
 
                 ) : (
-                    <NavLink to="/spots/new" >
-                        Create a New Spot
+                    <NavLink to="/spots/new" className='create-first-spot-link' >
+                        {/* <div> */}
+                        <button>
+                            <FaPlus/> Create a New Spot
+                        </button>
+                        {/* </div> */}
                     </NavLink>
                 )}        
             </div>

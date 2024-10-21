@@ -1,9 +1,17 @@
 .header {
-    background-color: #8d949c;
+    /* background-color: #8d949c; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.profile-button button {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 5px;
 }
 
 .login-menu {
@@ -46,7 +54,8 @@
 
 .auth-buttons {
     display: flex;
-    gap: 50px;
+    align-items: center;
+    gap: 30px;
     z-index: 100;
 }
 
@@ -61,6 +70,18 @@
 
 .create-spot-link:hover {
     text-decoration: underline;
+}
+
+.create-first-spot-link {
+    text-decoration: none;
+}
+
+.create-first-spot-link button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
 }
 
 .profile-dropdown {

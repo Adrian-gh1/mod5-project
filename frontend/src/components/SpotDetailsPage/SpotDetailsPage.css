@@ -59,6 +59,18 @@
     border: 2px solid black;
 }
 
+.callout-container button {
+    cursor: pointer;
+    background-color: red;
+    border-radius: 5px;
+}
+
+.callout-container button:hover {
+    cursor: pointer;
+    background-color:  darkred;/*  */
+    border-radius: 5px;
+}
+
 .callout-header {
     display: flex;
     justify-content: space-between;
@@ -79,6 +91,10 @@
 .review-button {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.review-button button {
+    cursor: pointer;
 }
 
 .review-button:empty {

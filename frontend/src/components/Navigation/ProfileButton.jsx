@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaBars, FaUserCircle } from 'react-icons/fa';
 import * as sessionActions from '../../store/session';
 // import OpenModalButton from '../OpenModalButton';
 import { NavLink, useNavigate  } from 'react-router-dom';
@@ -49,10 +49,13 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
-      </button>
+    <div>
+      <div className='profile-button'>
+        <button onClick={toggleMenu}>
+          <FaBars />
+          <FaUserCircle />
+        </button>
+      </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
@@ -98,7 +101,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

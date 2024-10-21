@@ -8,6 +8,8 @@
     border-radius: 8px;
     border: 3px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
     z-index: 100;
 }
 
@@ -27,4 +29,24 @@
     display: flex;
     justify-content: center;
     padding-top: 20px;
+}
+
+.submit-review-button button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 30px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: red;
+}
+
+.submit-review-button button:hover {
+    background-color: darkred;
+    cursor: pointer;
+}
+
+.submit-review-button button:disabled {
+    background-color: darkred;
+    cursor: default;
 }
