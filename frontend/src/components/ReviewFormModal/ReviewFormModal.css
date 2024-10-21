@@ -13,6 +13,11 @@
     z-index: 100;
 }
 
+.review-form-container h3 {
+    display: flex;
+    justify-content: center;
+}
+
 .error-message {
     color: red;
     margin-top: 10px;

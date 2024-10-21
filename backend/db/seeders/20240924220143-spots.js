@@ -20,7 +20,7 @@ module.exports = {
         lat: 32.7,
         lng: -117.2,
         name: 'Beach House',
-        description: 'A beautiful beach house with ocean views, perfect for relaxing vacations',
+        description: 'Experience the ultimate coastal getaway in this exquisite beach house, boasting breathtaking ocean views. Designed for relaxation, this serene retreat offers the perfect setting for unforgettable vacations, where you can unwind to the sound of waves and enjoy the stunning sunsets from your private balcony.',
         price: 300.00,
       },
       {
@@ -32,7 +32,7 @@ module.exports = {
         lat: 25.7617,
         lng: -80.1918,
         name: 'Ocean Breeze Villa',
-        description: 'A stunning villa with direct beach access and modern amenities for a luxurious stay',
+        description: 'Discover an exquisite European villa that redefines luxury living, featuring direct beach access and unparalleled modern amenities. This stunning mansion is a sanctuary of sophistication, offering spacious, elegantly designed interiors and breathtaking sea views. Enjoy a lavish stay with seamless indoor-outdoor living, where you can relax by the pristine shoreline or indulge in upscale comforts, creating unforgettable memories in a truly idyllic setting.',
         price: 450.00,
       },
       {

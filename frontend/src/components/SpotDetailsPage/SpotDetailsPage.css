@@ -42,6 +42,7 @@
 .spot-contents {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     border-bottom: 2px solid black;
@@ -52,15 +53,22 @@
     padding-bottom: 20px;
 }
 
+.spot-title-info {
+    width: 50%;
+    text-align: justify;
+}
+
 .callout-container {
     display: flex;
     flex-direction: column;
+    width: 20%;
     padding: 20px;
     border: 2px solid black;
 }
 
 .callout-container button {
     cursor: pointer;
+    padding: 10px 30px;
     background-color: red;
     border-radius: 5px;
 }
@@ -108,4 +116,8 @@
 
 .delete-review-button {
     padding-top: 10px;
+}
+
+.delete-review-button button {
+    cursor: pointer;
 }
