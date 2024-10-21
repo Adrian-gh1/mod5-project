@@ -1,6 +1,59 @@
 /* frontend/src/components/LoginFormPage/LoginForm.css */
 
-.cred-error {
+.login-modal-container {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 3px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    max-width: 400px;
+    z-index: 100;
+}
+
+
+.login-title {
+    text-align: center;
+    width: 100%;
+}
+
+.login-modal-container input {
+    margin-bottom: 10px;
+}
+
+.login-modal-container button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 30px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-button {
+    background-color: red;
+    border-radius: 5px;
+}
+
+.login-button:hover {
+    background-color: darkred;
+}
+
+.login-button:disabled {
+    background-color: darkred;
+    cursor: default;
+}
+
+.login-errors {
+    color: red;
+    margin-top: 5px;
+}
+
+.login-errors {
     color: red;
     margin-top: 5px;
 }

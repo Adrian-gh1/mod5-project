@@ -93,53 +93,55 @@ const UpdateSpotFormPage = () => {
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-items">
-                    <label>
-                        Country {errors.country && <span className='error'>{errors.country}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={country}
-                                onChange={(e) => setCountry(e.target.value)}
-                                placeholder="Country"                        
-                            />
-                        </div>
-                    </label>
+                    <div className="form-item1">
+                        <label>
+                            Country {errors.country && <span className='error'>{errors.country}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={country}
+                                    onChange={(e) => setCountry(e.target.value)}
+                                    placeholder="Country"                        
+                                />
+                            </div>
+                        </label>
 
-                    <label>
-                        Street Address {errors.address && <span className='error'>{errors.address}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                                placeholder="Street Address"                        
-                            />
-                        </div>
-                    </label>
+                        <label>
+                            Street Address {errors.address && <span className='error'>{errors.address}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    placeholder="Street Address"                        
+                                />
+                            </div>
+                        </label>
 
-                    <label>
-                        City {errors.city && <span className='error'>{errors.city}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                                placeholder="City"                        
-                            />
-                        </div>
-                    </label>
+                        <label>
+                            City {errors.city && <span className='error'>{errors.city}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                    placeholder="City"                        
+                                />
+                            </div>
+                        </label>
 
-                    <label>
-                        State {errors.state && <span className='error'>{errors.state}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={state}
-                                onChange={(e) => setState(e.target.value)}
-                                placeholder="State"                        
-                            />
-                        </div>
-                    </label>
+                        <label>
+                            State {errors.state && <span className='error'>{errors.state}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={state}
+                                    onChange={(e) => setState(e.target.value)}
+                                    placeholder="State"                        
+                                />
+                            </div>
+                        </label>
+                    </div>
                 </div>
 
                 <div className="form-items">
@@ -190,7 +192,7 @@ const UpdateSpotFormPage = () => {
                 <div className="form-items">
                     <h3>Liven up your spot with photos</h3>
                     <p>Submit a link to at least one photo to publish your spot.</p>
-                    <div>
+                    <div className="form-item5">
                         <label>               
                             <input
                                 type="text"
@@ -267,7 +269,7 @@ const UpdateSpotFormPage = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className="create-spot-button">
                     <button type='submit'>Update Spot</button>
                 </div>
 

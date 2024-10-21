@@ -65,78 +65,80 @@ function SignupFormModal() {
 
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p className='signup-errors'>{errors.email}</p>}
+      <div className='signup-modal-container'>
+        <h1 className='signup-title'>Sign Up</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Email
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          {errors.email && <p className='signup-errors'>{errors.email}</p>}
 
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        {errors.username && <p className='signup-errors'>{errors.username}</p>}
+          <label>
+            Username
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+          {errors.username && <p className='signup-errors'>{errors.username}</p>}
 
-        <label>
-          First Name
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.firstName && <p className='signup-errors'>{errors.firstName}</p>}
+          <label>
+            First Name
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </label>
+          {errors.firstName && <p className='signup-errors'>{errors.firstName}</p>}
 
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.lastName && <p className='signup-errors'>{errors.lastName}</p>}
+          <label>
+            Last Name
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </label>
+          {errors.lastName && <p className='signup-errors'>{errors.lastName}</p>}
 
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p className='signup-errors'>{errors.password}</p>}
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          {errors.password && <p className='signup-errors'>{errors.password}</p>}
 
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.confirmPassword && <p className='signup-errors'>{errors.confirmPassword}</p>}
+          <label>
+            Confirm Password
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </label>
+          {errors.confirmPassword && <p className='signup-errors'>{errors.confirmPassword}</p>}
 
-        <button type="submit" disabled={disableSignUpButton}>
-          Sign Up
-        </button>
-      </form>
+          <button type="submit" disabled={disableSignUpButton} className='signup-button'>
+            Sign Up
+          </button>
+        </form>
+      </div>
     </>
   );
 }

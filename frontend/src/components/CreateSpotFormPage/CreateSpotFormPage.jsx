@@ -77,53 +77,56 @@ const CreateSpotFormPage = () => {
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-items">
-                    <label>
-                        Country {errors.country && <span className='error'>{errors.country}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={country}
-                                onChange={(e) => setCountry(e.target.value)}
-                                placeholder="Country"                        
-                            />
-                        </div>
-                    </label>
+                    <div className="form-item1">
+                        <label>
+                            Country {errors.country && <span className='error'>{errors.country}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={country}
+                                    onChange={(e) => setCountry(e.target.value)}
+                                    placeholder="Country"                        
+                                />
+                            </div>
+                        </label>
 
-                    <label>
-                        Street Address {errors.address && <span className='error'>{errors.address}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                                placeholder="Street Address"                        
-                            />
-                        </div>
-                    </label>
+                        <label>
+                            Street Address {errors.address && <span className='error'>{errors.address}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    placeholder="Street Address"                        
+                                />
+                            </div>
+                        </label>
 
-                    <label>
-                        City {errors.city && <span className='error'>{errors.city}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                                placeholder="City"                        
-                            />
-                        </div>
-                    </label>
+                        <label>
+                            City {errors.city && <span className='error'>{errors.city}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                    placeholder="City"                        
+                                />
+                            </div>
+                        </label>
 
-                    <label>
-                        State {errors.state && <span className='error'>{errors.state}</span>}
-                        <div>
-                            <input
-                                type="text"
-                                value={state}
-                                onChange={(e) => setState(e.target.value)}
-                                placeholder="State"                        
-                            />
-                        </div>
-                    </label>
+                        <label>
+                            State {errors.state && <span className='error'>{errors.state}</span>}
+                            <div>
+                                <input
+                                    type="text"
+                                    value={state}
+                                    onChange={(e) => setState(e.target.value)}
+                                    placeholder="State"                        
+                                />
+                            </div>
+                        </label>
+
+                    </div>
                 </div>
 
                 <div className="form-items">
@@ -160,13 +163,16 @@ const CreateSpotFormPage = () => {
                     <h3>Set a base price for your spot</h3>
                     <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                     <label>
-                        $                  
-                        <input
-                            type="text"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                            placeholder="Price per night (USD)"                        
-                        />
+                        <div className="price-input">
+                            $                  
+                            <input
+                                type="text"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                placeholder="Price per night (USD)"                        
+                            />
+
+                        </div>
                     </label>
                     {errors.price && <div className='error'>{errors.price}</div>}
                 </div>
@@ -174,20 +180,22 @@ const CreateSpotFormPage = () => {
                 <div className="form-items">
                     <h3>Liven up your spot with photos</h3>
                     <p>Submit a link to at least one photo to publish your spot.</p>
-                    <div>
-                        <label>               
-                            <input
-                                type="text"
-                                value={images[0]}
-                                onChange={(e) => {
-                                    const newImages = [...images];
-                                    newImages[0] = e.target.value;
-                                    setImages(newImages);
-                                }}
-                                placeholder="Preview Image URL"                        
-                            />
-                        </label>
-                        {errors.images && <div className='error'>{errors.images}</div>}
+                    <div className="form-item5">
+                        <div>
+                            <label>               
+                                <input
+                                    type="text"
+                                    value={images[0]}
+                                    onChange={(e) => {
+                                        const newImages = [...images];
+                                        newImages[0] = e.target.value;
+                                        setImages(newImages);
+                                    }}
+                                    placeholder="Preview Image URL"                        
+                                />
+                            </label>
+                            {errors.images && <div className='error'>{errors.images}</div>}
+                        </div>
 
                         <div>
                             <label>               
@@ -251,7 +259,7 @@ const CreateSpotFormPage = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className="create-spot-button">
                     <button type='submit'>Create Spot</button>
                 </div>
 

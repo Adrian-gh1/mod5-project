@@ -8,6 +8,7 @@ import { userSpots } from '../../store/spots';
 import { useModal } from '../../context/Modal';
 import DeleteSpotModal from '../DeleteSpotModal/DeleteSpotModal';
 // import './ManageSpotsPage.css';
+import './ManageSpotsPage.css';
 
 const ManageSpotsPage = () => {
     const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const ManageSpotsPage = () => {
         <div className='tile-container'>
             <h2>Manage Spots</h2>
             {userSpotList.length > 0 ? (
-                    <div className='tile-list'>
+                    <div>
                         {userSpotList.map(spot => (
                             <div key={spot.id}>
                                 <div className='tile'>
