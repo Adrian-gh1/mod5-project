@@ -29,6 +29,26 @@ module.exports = {
       {spotId: 2,
         url:'https://i.pinimg.com/736x/01/3e/02/013e02619fe7ab8157442d2764223c92.jpg',
         preview:true
+      },
+      {spotId: 3,
+        url:'https://i.pinimg.com/736x/3b/5e/c9/3b5ec95c09d9cc982a3258c410273eaa.jpg',
+        preview:true
+      },
+      {spotId: 3,
+        url:'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg',
+        preview:true
+      },
+      {spotId: 3,
+        url:'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg',
+        preview:true
+      },
+      {spotId: 3,
+        url:'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg',
+        preview:true
+      },
+      {spotId: 3,
+        url:'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg',
+        preview:true
       }
     ],{ validate: true })
   },
@@ -42,7 +62,15 @@ module.exports = {
      */
     options.tableName = 'SpotImages';
     await queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['https://images.app.goo.gl/J2T3764iNL8akcMW7', 'https://www.google.com/imgres?imgurl=https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?cs%3Dsrgb%26dl%3Dpexels-binyaminmellish-106399.jpg%26fm%3Djpg&tbnid=kdENxlNldMG6sM&vet=1&imgrefurl=https://www.pexels.com/search/houses/&docid=pOKaSh3YkKiy2M&w=5408&h=3605&source=sh/x/im/m1/1&kgs=e556ea0cc2d90162&shem=abme,trie'] }
+      url: { [Op.in]: [
+        'https://i.pinimg.com/enabled/564x/8c/9b/8d/8c9b8daace80380575e358e3bf047e56.jpg',
+        'https://i.pinimg.com/736x/01/3e/02/013e02619fe7ab8157442d2764223c92.jpg',
+        'https://i.pinimg.com/736x/3b/5e/c9/3b5ec95c09d9cc982a3258c410273eaa.jpg',
+        'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg',
+        'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg',
+        'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg',
+        'https://i.pinimg.com/enabled/564x/6a/d0/c4/6ad0c4694bbd7200a009e87a2e488388.jpg'
+      ]}
     }, {})
   }
 };

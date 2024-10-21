@@ -15,7 +15,7 @@ module.exports = {
         ownerId: 1,
         address: '123 Rd',
         city: 'San Diego',
-        state: 'California',
+        state: 'CA',
         country: 'United States',
         lat: 32.7,
         lng: -117.2,
@@ -27,13 +27,25 @@ module.exports = {
         ownerId: 2,
         address: '456 Ocean Ave',
         city: 'Miami',
-        state: 'Florida',
+        state: 'FL',
         country: 'United States',
         lat: 25.7617,
         lng: -80.1918,
         name: 'Ocean Breeze Villa',
         description: 'A stunning villa with direct beach access and modern amenities for a luxurious stay',
         price: 450.00,
+      },
+      {
+        ownerId: 1,
+        address: '123 Malibu Dr',
+        city: 'Malibu',
+        state: 'CA',
+        country: 'United States',
+        lat: 34.0259,
+        lng: -118.7798,
+        name: 'Stone and Marbel',
+        description: 'Nestled in a serene landscape, this stunning property showcases a harmonious blend of modern design and natural beauty, characterized by its striking black and white stone facade. The exterior features a sleek, contemporary aesthetic, with large windows framed by smooth black stone, allowing for abundant natural light to flood the interior.',
+        price: 750.00,
       }
     ], { validate: true });
   },
@@ -41,7 +53,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = 'Spots';
     await queryInterface.bulkDelete(options, {
-      address: { [Op.in]: ['123 Rd', '456 Ocean Ave'] }
+      address: { [Op.in]: ['123 Rd', '456 Ocean Ave', '123 Malibu Dr'] }
     }, {});
   }
 };
